@@ -1,0 +1,16 @@
+if (process.env.NODE_ENV !== "production") {
+  const dns = require("dns");
+  dns.setDefaultResultOrder("ipv4first");
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+}
+
+require("dotenv").config();
+const app = require("./src/app");
+const connectToDB = require("./src/config/database");
+
+connectToDB();
+
+
+app.listen(3000, () => {
+    console.log("Server isrunning on port 3000");
+})
